@@ -10,7 +10,7 @@ class Product(models.Model):
 
 class ProductList(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_lists')
 
@@ -21,7 +21,7 @@ class ProductList(models.Model):
 class ProductEntry(models.Model):
     quantity = models.PositiveIntegerField()
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     product_list = models.ForeignKey(ProductList, related_name='entries', on_delete=models.CASCADE)
 
